@@ -1,0 +1,230 @@
+<html>
+  <meta charset="utf-8" />
+  <title>VAST Challenge 2022</title>
+  <meta
+    name="name"
+    content="Ankit Basrur,Awani Kendurkar,Prasann Prashant Shimpi,Rakshith Chandrashekar,Siddartha Gurugubelli,Sidharth Dinesh"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+  />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="static/nwGraph.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .links line {
+      stroke: #999;
+      stroke-opacity: 0.6;
+    }
+
+    .nodes circle {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+
+    path {
+      opacity: 0.4;
+      stroke-width: 0px;
+      pointer-events: none;
+    }
+    .tooltip {
+      position: absolute;
+      text-align: left;
+      width: 225px;
+      height: 200px;
+      padding: 2px;
+      font: 10px sans-serif;
+      background: #d3f97b;
+      border: 1px solid black;
+      border-radius: 8px;
+    }
+    .container {
+      display: flex;
+      margin-left: 205px;
+      min-width: 88%;
+      margin-top: 10px;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 20px;
+      position: relative;
+      height: 98%;
+    }
+    body {
+      margin: 0;
+      font-family: "Helvetica", Verdana, Sans-serif;
+      font-weight: bold;
+    }
+
+    .heading {
+      margin-left: 200px; /* Adjust based on the width of the navbar */
+      padding: 16px;
+      background-color: white;
+      height: 100px;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      color: #333;
+    }
+
+    /* Style for the left navbar container */
+    .navbar {
+      height: 100%;
+      width: 200px;
+      background-color: #333;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 20px;
+      color: white;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style for the navbar links */
+    .navbar a {
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    /* Highlight the current page link */
+    .navbar a:hover {
+      background-color: #555;
+    }
+
+    .title-container {
+      position: absolute;
+      top: 130px;
+      left: 220px;
+    }
+  </style>
+
+  <body onload="loadData()">
+    <div class="heading">
+      <h1>
+        Exploring Demographics & Relationships in Engagement, Ohio (VAST
+        Challenge 2022 MC-1)
+      </h1>
+    </div>
+
+    <!-- Left Navbar -->
+    <div class="navbar">
+      <div style="position: absolute; top: 150px">
+        <a href="/jovialityTrends">Joviality trends</a>
+        <a href="/">Popular Recreation Spots</a>
+        <a href="/empTrends">Employment Trends Timeline</a>
+      </div>
+    </div>
+    <div class="container">
+      <svg width="1200" height="700"></svg>
+      <div
+        class="control-panel"
+        style="margin-top: 10px; border-left: 1px solid black"
+      >
+        <h3 style="text-align: right; margin-bottom: 50px">Control Panel</h3>
+        <div class="input-group">
+          <div id="groupPanel">
+            <div style="display: inline-block; width: 70px">
+              <p>Group 1</p>
+            </div>
+            <select
+              class="form-select"
+              id="attr1"
+              style="display: inline; width: 110px"
+            >
+              <option selected>Select group</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="J">J</option>
+            </select>
+            <div>
+              <div
+                class="input-group"
+                style="margin-bottom: 8%; margin-top: 4%"
+              >
+                <div
+                  style="display: inline-block; width: 70px; padding-top: 7px"
+                >
+                  <p>Group 2</p>
+                </div>
+                <select
+                  class="form-select"
+                  id="attr2"
+                  style="display: inline; width: 110px; position: static"
+                >
+                  <option selected>Select group</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                  <option value="I">I</option>
+                  <option value="J">J</option>
+                </select>
+              </div>
+              <div style="margin-bottom: 5%">
+                Start Date:
+                <input
+                  type="date"
+                  id="start"
+                  name="trip-start"
+                  style="width: 55%"
+                  value="2022-03-01"
+                  min="2022-03-01"
+                  max="2022-05-29"
+                />
+                <br />
+              </div>
+              <div style="margin-bottom: 10%">
+                End Date:
+                <input
+                  type="date"
+                  id="end"
+                  name="trip-start"
+                  style="width: 56%"
+                  value="2022-05-29"
+                  min="2022-03-01"
+                  max="2022-05-29"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                type="button"
+                id="playBtn"
+                class="btn btn-primary"
+                data-toggle="button"
+                aria-pressed="false"
+                autocomplete="off"
+                style="margin-left: 50px; min-width: 100px"
+                onclick="display()"
+              >
+                Display
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

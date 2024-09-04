@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VAST Challenge 2022</title>
+    <meta name="name" content="Awani Kendurkar" />
+    <meta name="email" content="akendurk@asu.edu" />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="static/radialBubbleChart.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Helvetica", Verdana, Sans-serif;
+        font-weight: bold;
+      }
+
+      .heading {
+        margin-left: 200px; /* Adjust based on the width of the navbar */
+        padding: 16px;
+        background-color: white;
+        height: 100px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        color: #333;
+      }
+
+      /* Style for the left navbar container */
+      .navbar {
+        height: 100%;
+        width: 200px;
+        background-color: #333;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding-top: 20px;
+        color: white;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Style for the navbar links */
+      .navbar a {
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        display: block;
+      }
+
+      /* Highlight the current page link */
+      .navbar a:hover {
+        background-color: #555;
+      }
+
+      .title-container {
+        position: absolute;
+        top: 130px;
+        left: 220px;
+      }
+
+      .container {
+        /* width: 540px;
+        height: 574px;  */
+        border: 1px solid #000;
+        position: absolute;
+        top: 180px;
+        left: 220px;
+      }
+
+      #heatmap1Svg {
+        width: 100%;
+        height: 95%;
+        padding: 5px;
+      }
+
+      .heatmap2-container {
+        width: 540px;
+        height: 574px;
+        border: 1px solid #000;
+        position: absolute;
+        top: 180px;
+        left: 800px;
+      }
+
+      #heatmap2Svg {
+        width: 100%;
+        height: 95%;
+        padding: 5px;
+      }
+
+      div.heatmap1-tooltip {
+        position: absolute;
+        text-align: left;
+        width: 165px;
+        height: 68px;
+        padding: 2px;
+        font: 10px;
+        background: #d3f97b;
+        border: 2px solid black;
+        border-radius: 8px;
+        font-size: 10px;
+      }
+
+      .radio-container {
+        display: inline-block;
+        margin-right: 20px; /* Adjust spacing between radio buttons */
+      }
+
+      .radio-container input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      .radio-container label {
+        cursor: pointer;
+        color: #333;
+      }
+      .custom-radio-buttons {
+        margin-top: 20px;
+        float: right;
+      }
+    </style>
+</head>
+<body>
+<div class="heading">
+    <h1>
+        Exploring Demographics & Relationships in Engagement, Ohio (VAST
+        Challenge 2022 MC-1)
+    </h1>
+</div>
+
+<!-- Left Navbar -->
+<div class="navbar">
+    <div style="position: absolute; top: 150px">
+        <a href="/jovialityTrends">Joviality Trends</a>
+        <a href="/socialInteractions">Social Interactions</a>
+        <a href="/">Popular Recreation Spots</a>
+    </div>
+</div>
+<div class="title-container" style="font-size: 24px">
+    Employment Trends Timeline
+</div>
+<div class="container">
+    <div class="custom-radio-buttons">
+        <div class="form-check">
+            <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="sameEmployer"
+                    onclick="updateOnHoverSetting(this)"
+                    checked
+            />
+            <label class="form-check-label" for="sameEmployer">
+                Highlight employers in current timeframe
+            </label>
+        </div>
+        <div class="form-check">
+            <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="sameTime"
+                    onclick="updateOnHoverSetting(this)"
+            />
+            <label class="form-check-label" for="sameTime">
+                Highlight the same employer across the timeline
+            </label>
+        </div>
+    </div>
+    <div id="dataviz"></div>
+</div>
+<!-- This is the end of the container div -->
+</body>
+</html>

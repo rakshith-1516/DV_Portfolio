@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VAST Challenge 2022</title>
+    <meta name="name" content="Ankit Basrur,Awani Kendurkar,Prasann Prashant Shimpi,Rakshith Chandrashekar,Siddartha Gurugubelli,Sidharth Dinesh">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <script type="module" src="static/joviality.js"></script>
+    <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica", Verdana, Sans-serif;
+      font-weight: bold;
+    }
+
+    .heading {
+      margin-left: 200px; /* Adjust based on the width of the navbar */
+      padding: 16px;
+      background-color: white;
+      height: 100px;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      color: #333;
+    }
+
+    /* Style for the left navbar container */
+    .navbar {
+      height: 100%;
+      width: 200px;
+      background-color: #333;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 20px;
+      color: white;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style for the navbar links */
+    .navbar a {
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    /* Highlight the current page link */
+    .navbar a:hover {
+      background-color: #555;
+    }
+
+            .title-container {
+            position: absolute;
+            top: 130px;
+            left: 220px;
+        }
+
+        .heatmap1-container {
+            width: 540px;
+            height: 560px;
+            border: 1px solid #000;
+            position: absolute;
+            top: 180px;
+            left: 220px;
+        }
+
+        #heatmap1Svg {
+            width: 100%;
+            height: 95%;
+            padding: 5px;
+        }
+
+        .heatmap2-container {
+            width: 540px;
+            height: 560px;
+            border: 1px solid #000;
+            position: absolute;
+            top: 180px;
+            left: 800px;
+        }
+
+        #heatmap2Svg {
+            width: 100%;
+            height: 95%;
+            padding: 5px;
+        }
+
+        div.heatmap1-tooltip {
+        position: absolute;
+        text-align: left;
+        width: 165px;
+        height: 68px;
+        padding: 2px;
+        font: 10px;
+        background: #D3F97B;
+        border: 2px solid black;
+        border-radius: 8px;
+        font-size: 10px;
+        }
+
+        .radio-container {
+            display: inline-block;
+            margin-right: 20px; /* Adjust spacing between radio buttons */
+        }
+
+        .radio-container input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .radio-container label {
+            cursor: pointer;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="heading">
+    <h1>Exploring Demographics & Relationships in Engagement, Ohio (VAST Challenge 2022 MC-1)</h1>
+</div>
+
+<!-- Left Navbar -->
+<div class="navbar">
+    <div style="position:absolute; top:150px;">
+        <a href="/">Popular Recreation Spots</a>
+        <a href="/socialInteractions">Social Interactions</a>
+        <a href="/empTrends">Employment Trends Timeline</a>
+    </div>
+</div>
+<div class="title-container" style="font-size:24px">
+    Average Joviality in different Interest and Age Groups.
+</div>
+<div id="dataviz" class="heatmap1-container">
+</div>
+<div id="plotviz" class="heatmap2-container">
+</div>
+</body>
+</html>
