@@ -1,4 +1,4 @@
-# Sidharth-Awani-Ankit-Prasann-Siddartha-Rakshith
+# Rakshith Portfolio Project - Data Visualization CSE 578 
 
 # VAST Challenge 2022
 
